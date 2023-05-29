@@ -26,6 +26,7 @@ const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
 const Login = () => {
   logEvent(analytics, "page_view");
+  const navigate = useNavigate();
   useEffect(() => {
     const UID = localStorage.getItem("UID");
     if (UID) {
@@ -37,7 +38,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
+
   const handleLogin = (e) => {
     if (!email || !password) {
       return;
