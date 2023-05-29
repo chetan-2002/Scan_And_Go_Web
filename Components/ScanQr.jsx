@@ -16,6 +16,7 @@ import animationData from "../assets/success.json";
 import { useNavigate } from "react-router-dom";
 import { logEvent } from "firebase/analytics";
 import { analytics } from "../firebase-config";
+import { Helmet } from "react-helmet";
 
 const ScanQr = () => {
   const [data, setData] = useState(null);
@@ -76,51 +77,66 @@ const ScanQr = () => {
   }, [data]);
 
   return (
-    <Box
-      style={{
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
+    <>
+      <Helmet>
+        {`
+          <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-CM3SWTD04Z"
+        ></script>
+        <script>
+          window.dataLayer = window.dataLayer || []; function gtag()
+          {dataLayer.push(arguments);}
+          gtag('js', new Date()); gtag('config', 'G-CM3SWTD04Z');
+        </script>
+          `}
+      </Helmet>
       <Box
         style={{
           display: "flex",
           flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          paddingTop: "6px",
-          paddingBottom: "6px",
-          fontSize: "1.5rem",
-          backgroundColor: "teal",
-          color: "white",
-          fontWeight: "bold",
         }}
       >
-        <Text>Scan QR</Text>
+        <Box
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            paddingTop: "6px",
+            paddingBottom: "6px",
+            fontSize: "1.5rem",
+            backgroundColor: "teal",
+            color: "white",
+            fontWeight: "bold",
+          }}
+        >
+          <Text>Scan QR</Text>
+        </Box>
+        <Box
+          marginTop={{ base: "8rem", md: "0" }}
+          display={{ lg: "none" }}
+          width={"100%"}
+        >
+          {scan === true ? (
+            <>
+              <QrReader
+                constraints={{ facingMode: "environment" }}
+                onResult={(result, error) => {
+                  if (result) {
+                    setData(result?.text);
+                  }
+                }}
+              />
+            </>
+          ) : (
+            <>
+              <Lottie options={defaultOptions} height={400} width={400} />
+            </>
+          )}
+        </Box>
       </Box>
-      <Box
-        marginTop={{ base: "8rem", md: "0" }}
-        display={{ lg: "none" }}
-        width={"100%"}
-      >
-        {scan === true ? (
-          <>
-            <QrReader
-              constraints={{ facingMode: "environment" }}
-              onResult={(result, error) => {
-                if (result) {
-                  setData(result?.text);
-                }
-              }}
-            />
-          </>
-        ) : (
-          <>
-            <Lottie options={defaultOptions} height={400} width={400} />
-          </>
-        )}
-      </Box>
-    </Box>
+    </>
   );
 };
 
