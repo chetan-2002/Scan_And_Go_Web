@@ -45,7 +45,7 @@ const ScanQr = () => {
         description:
           "Please try again after " + (45 - time_difference) + " minutes.",
         status: "error",
-        duration: 2000,
+        duration: 4000,
         isClosable: true,
       });
       return;

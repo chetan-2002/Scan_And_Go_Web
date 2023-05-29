@@ -64,7 +64,7 @@ const Signup = () => {
               title: "Account created successfully!",
               // description: "Account created successfully!",
               status: "success",
-              duration: 2000,
+              duration: 4000,
               isClosable: true,
             });
           })
@@ -73,7 +73,7 @@ const Signup = () => {
               title: "An error occurred.",
               description: error.message,
               status: "error",
-              duration: 2000,
+              duration: 4000,
               isClosable: true,
             });
           });
@@ -92,7 +92,7 @@ const Signup = () => {
           title: "An error occurred.",
           description: error.message,
           status: "error",
-          duration: 2000,
+          duration: 4000,
           isClosable: true,
         });
       });

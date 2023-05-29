@@ -25,9 +25,9 @@ import { analytics } from "../firebase-config";
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
 const Login = () => {
-  logEvent(analytics, "page_view");
   const navigate = useNavigate();
   useEffect(() => {
+    logEvent(analytics, "page_view");
     const UID = localStorage.getItem("UID");
     if (UID) {
       navigate("/scan", { replace: true });
@@ -53,7 +53,7 @@ const Login = () => {
           title: "Login successful.",
           description: "You are now logged in.",
           status: "success",
-          duration: 2000,
+          duration: 4000,
           isClosable: true,
         });
         navigate("/scan", { replace: true });
@@ -63,7 +63,7 @@ const Login = () => {
           title: "An error occurred.",
           description: error.message,
           status: "error",
-          duration: 2000,
+          duration: 4000,
           isClosable: true,
         });
       });
