@@ -45,7 +45,6 @@ const Login = () => {
       return;
     }
     e.preventDefault();
-    console.log(email, password);
     setLoading(true);
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -58,6 +57,8 @@ const Login = () => {
           isClosable: true,
         });
         navigate("/scan", { replace: true });
+        setEmail("");
+        setPassword("");
       })
       .catch((error) => {
         toast({
@@ -69,8 +70,6 @@ const Login = () => {
         });
       });
     setLoading(false);
-    setEmail("");
-    setPassword("");
   };
   const handleShowClick = () => setShowPassword(!showPassword);
   return (

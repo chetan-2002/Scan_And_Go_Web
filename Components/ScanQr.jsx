@@ -71,7 +71,7 @@ const ScanQr = () => {
         .catch((err) => {
           console.log(err);
         });
-      // setData(null);
+
       setScan(false);
     }
   }, [data]);

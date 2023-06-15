@@ -26,8 +26,8 @@ import { analytics } from "../firebase-config";
 import { Helmet } from "react-helmet";
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
-// const CAiOutlineMail = chakra(AiOutlineMail);
 const CAiTwotoneMail = chakra(AiTwotoneMail);
+
 const Signup = () => {
   useEffect(() => {
     logEvent(analytics, "page_view");
@@ -36,6 +36,7 @@ const Signup = () => {
       navigate("/scan", { replace: true });
     }
   }, []);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -87,6 +88,10 @@ const Signup = () => {
             const errorMessage = error.message;
           });
         navigate("/scan", { replace: true });
+        setEmail("");
+        setPassword("");
+        setName("");
+        setEnrollmentNo("");
       })
       .catch((error) => {
         toast({
@@ -98,11 +103,8 @@ const Signup = () => {
         });
       });
     setLoading(false);
-    setEmail("");
-    setPassword("");
-    setName("");
-    setEnrollmentNo("");
   };
+
   return (
     <>
       <Helmet>
